@@ -10,11 +10,13 @@
 
 
 # Constants
-EXT=".nix"
-CONF_NAME="configuration"
-CONF_FILENAME=$CONF_NAME$EXT
-HW_CONF_NAME="hardware-"$CONF_NAME
-HW_CONF_FILENAME=$HW_CONF_NAME$EXT
+EXT=".nix"                          # File extension = .nix
+
+CONF_NAME="configuration"           # Filename
+CONF_FULLNAME=$CONF_NAME$EXT        # Full Filename
+
+HW_CONF_NAME="hardware-"$CONF_NAME  # Hardware Filenamne
+HW_CONF_FULLNAME=$HW_CONF_NAME$EXT  # Hardware Full Filename
 
 
 #****************************************************************************
@@ -23,11 +25,10 @@ HW_CONF_FILENAME=$HW_CONF_NAME$EXT
 # Set environmental variables, prefixed and namspaced with Z
 
 # Get the nixos-config path from $NIX_PATH
-export ZNIXOS_CONFIG_PATH=$(echo $NIX_PATH | grep -o 'nixos-config.*'$CONF_FILENAME | grep -o "/.*"$EXT)
+ZNIXOS_CONFIG_PATH=$(echo $NIX_PATH | grep -o 'nixos-config.*'$CONF_FULLNAME | grep -o "/.*"$EXT)
 
 # Creating a path for hardware configuration
-export ZNIXOS_HW_CONFIG_PATH=${ZNIXOS_CONFIG_PATH/$CONF_NAME/$HW_CONF_NAME}
-echo $ZNIXOS_HW_CONFIG_PATH
+ZNIXOS_HW_CONFIG_PATH=${ZNIXOS_CONFIG_PATH/$CONF_NAME/$HW_CONF_NAME}
 
 
 
@@ -49,7 +50,7 @@ if [ -f ${ZNIXOS_HW_CONFIG_PATH} ]; then
 fi
 
 # Add a linked configuration file
-sudo ln -s $PWD/$HW_CONF_FILENAME $ZNIXOS_HW_CONFIG_PATH
+sudo ln -s $PWD/$HW_CONF_FULLNAME $ZNIXOS_HW_CONFIG_PATH
 
 
 #****************************************************************************
@@ -70,7 +71,7 @@ if [ -f ${ZNIXOS_CONFIG_PATH} ]; then
 fi
 
 # Add a linked configuration file
-sudo ln -s $PWD/$CONF_FILENAME $ZNIXOS_CONFIG_PATH
+sudo ln -s $PWD/$CONF_FULLNAME $ZNIXOS_CONFIG_PATH
 
 
 
