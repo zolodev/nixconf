@@ -91,7 +91,6 @@
       vim
       vscodium-fhs	# alternative to vscodium, but FHS compatible
       git
-      gparted
       bat
       btop
       tmux
@@ -100,6 +99,8 @@
       bitwarden
       spotify
       steam
+      kitty
+      alacritty
       #fonts
       fira-code
     #  thunderbird
