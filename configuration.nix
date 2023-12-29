@@ -144,4 +144,20 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
 
+  # Nix Package management
+  nix = {
+    settings.auto-optimise-store = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+  };
+
+  # Automatic updates
+  system.autoUpgrade = {
+    enable = true;
+    channel = "https://channels.nixos.org/?prefix=nixos-23.11/";
+  };
+
 }
