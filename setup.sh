@@ -72,3 +72,9 @@ fi
 # Add a linked configuration file
 sudo ln -s $PWD/$CONF_FILENAME $ZNIXOS_CONFIG_PATH
 
+
+
+#
+# Rebuild NIX, to Install and apply the changes
+#
+sudo nixos-rebuild switch
