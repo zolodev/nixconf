@@ -88,9 +88,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
-      vim
       vscodium-fhs	# alternative to vscodium, but FHS compatible
-      git
       bat
       btop
       tmux
@@ -113,8 +111,25 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    git
   #  wget
+  ];
+
+  environment.gnome.excludePackages = with pkgs.gnome; [
+    #epiphany     # web browser
+    gedit     # text editor
+    totem     # video player
+    yelp     # help viewer
+    geary     # email client
+    gnome-calendar     # calendar
+    gnome-contacts     # contacts
+    gnome-maps      # maps
+    gnome-music     # music
+    gnome-weather	# weather
+    pkgs.gnome-photos     # photos
+    pkgs.gnome-tour     # tour app
+    evince     # document viewer
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
